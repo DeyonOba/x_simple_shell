@@ -25,3 +25,19 @@ From ChatGPT: (Summary)
 > 4. If there are no child processes that have terminated, the wait function may block (wait) until a child process does terminate. If the parent process has no child processes, wait immediately returns with an error.
 
 Sample code based on ALX curriculum is found in filenamed `wait.c`.
+
+### How `stat` function in C work
+
+`stat`: This function is used to retrieve information about a file or directory, such as it's attributes and status. This is a standard C library that can be used to obtain information like file permission, time stamp, size, and more.
+
+**Prototype of the `stat` function:**
+
+```c
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+int stat(const char *pathname, struct stat *statbuf);
+```
+- `pathname`: A pointer to a null terminated string containing the path to the or directory you want to get information about.
+- `statbuf`: A pointer to a `struct stat` where the file information will be stored.
