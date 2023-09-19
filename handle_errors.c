@@ -32,7 +32,7 @@ char *command_error(int sh_call_num, char *command)
 	char *alert = "sh", *sep = ": ", *message = "not found";
 	char *sh_call = number_to_string(sh_call_num);
 	
-	size_t string_len = strlen(alert) + strlen(sep) + strlen(sh_call) + strlen(sep) +  strlen(command) + strlen(sep) + strlen(message) + 1;
+	size_t string_len = strlen(alert) + strlen(sep) + strlen(sh_call) + strlen(sep) +  strlen(command) + strlen(sep) + strlen(message) + 2;
 
 	char *error_string = malloc(string_len *sizeof(char));
 
@@ -43,6 +43,7 @@ char *command_error(int sh_call_num, char *command)
 	strcat(error_string, command);
 	strcat(error_string, sep);
 	strcat(error_string, message);
+	strcat(error_string, "\n");
 
 	return (error_string);
 }
