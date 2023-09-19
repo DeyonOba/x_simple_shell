@@ -1,17 +1,17 @@
 #include "shell.h"
 
-int _putchar(char c, int std_file_num)
+int _putchar(char c, int file_descriptor)
 {
-		write(1, &c, std_file_num);
+		write(file_descriptor, &c, 1);
 }
 
-void _print(char *string, int std_file_num)
+void _print(char *string, int file_descriptor)
 {
 	int index = 0;
 
 	while(string[index] != '\0')
 	{
-		_putchar(string[index], std_file_num);
+		_putchar(string[index], file_descriptor);
 		index++;
 	}
 }
