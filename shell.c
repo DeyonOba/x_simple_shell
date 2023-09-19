@@ -22,10 +22,11 @@ int main(void)
 		char **words = WordParser(command, &word_counts, " \n\t\r");
 		int i;
 		char **paths = get_paths_dir(environ);
-		char *path = get_file_path(words[0], paths);
 
 		if (word_counts == 0)
 			continue;
+
+		char *path = get_file_path(words[0], paths);
 
 		if (strcmp(words[0], "exit") == 0)
 		{
@@ -35,7 +36,7 @@ int main(void)
 
 		if (path == NULL || strcmp(path, "") == 0)
 		{
-			perror((get_error_message(1))(num_shell_calls, words[0]));
+			_print((get_error_message(1))(num_shell_calls, words[0]), 2);
 			continue;
 		}
 
