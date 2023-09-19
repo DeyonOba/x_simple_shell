@@ -17,8 +17,8 @@ typedef struct error
 	char *(*func)(int num_shell_calls, char *failed_command);
 } shell_error;
 
-int _putchar(char c, int std_file_num);
-void _print(char *string, int std_file_num);
+int _putchar(char c, int file_descriptor);
+void _print(char *string, int file_descriptor);
 void prompt(void);
 char **WordParser(char *input, int *word_count, char *seperator);
 
