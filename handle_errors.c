@@ -1,7 +1,12 @@
 #include "shell.h"
 
-
-char *(*get_error_message(int num)) (int, char*)
+/**
+ * get_error_message - Get function to handle error messages
+ * @num: Error tag
+ *
+ * Return: Function pointer
+ */
+char *(*get_error_message(int num)) (char*, int, char*)
 {
 	size_t i, size;
 	shell_error opps[] = {
@@ -10,7 +15,7 @@ char *(*get_error_message(int num)) (int, char*)
 		{2, file_error}
 	};
 
-	size = (sizeof(opps) / sizeof (shell_error));
+	size = (sizeof(opps) / sizeof(shell_error));
 
 	for (i = 0; i < size; i++)
 	{
@@ -23,20 +28,27 @@ char *(*get_error_message(int num)) (int, char*)
 
 }
 
-char *command_error(int sh_call_num, char *command)
+/**
+ * command_error - Handles command error
+ * @file_name: File name
+ * @sh_call_num: Number of shell call (hsh)
+ * @command: Command string
+ *
+ * Return: Error message
+ */
+char *command_error(char *file_name, int sh_call_num, char *command)
 {
-	/**
-	 * Output should look something like this
-	 * sh: 1: command_name: not found
-	 */
-	char *alert = "sh", *sep = ": ", *message = "not found";
+	char  *sep = ": ", *message = "not found";
 	char *sh_call = number_to_string(sh_call_num);
-	
-	size_t string_len = strlen(alert) + strlen(sep) + strlen(sh_call) + strlen(sep) +  strlen(command) + strlen(sep) + strlen(message) + 2;
+	size_t string_len;
 
-	char *error_string = malloc(string_len *sizeof(char));
+	string_len += strlen(file_name) + strlen(sep) + strlen(sh_call);
+	string_len += strlen(sep) +  strlen(command) + strlen(sep);
+	string_len += strlen(message) + 2;
 
-	strcpy(error_string, alert);
+	char *error_string = malloc(string_len * sizeof(char));
+
+	strcpy(error_string, file_name);
 	strcat(error_string, sep);
 	strcat(error_string, sh_call);
 	strcat(error_string, sep);
@@ -48,19 +60,36 @@ char *command_error(int sh_call_num, char *command)
 	return (error_string);
 }
 
-char *default_error(int sh_call_num, char *command)
+/**
+ * default_error - Handles error
+ * @file_name: File name
+ * @sh_call_num: Number of shell call (hsh)
+ * @command: Command string
+ *
+ * Return: Error message
+ */
+char *default_error(char *file_name, int sh_call_num, char *command)
 {
+	(void)file_name;
 	(void)sh_call_num;
 	(void)command;
 
 	return ("");
 }
 
-char *file_error(int sh_call_num, char *command)
+/**
+ * file_error - Handles file error
+ * @file_name: File name
+ * @sh_call_num: Number of shell call (hsh)
+ * @command: Command string
+ *
+ * Return: Error message
+ */
+char *file_error(char *file_name, int sh_call_num, char *command)
 {
+	(void)file_name;
 	(void)sh_call_num;
 	(void)command;
 
 	return ("");
 }
-
