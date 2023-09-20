@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * free_array - Free dynamically allocated memory
+ *
+ * @array: Array to be freed
+ */
 void free_array(char **array)
 {
 	int i;
