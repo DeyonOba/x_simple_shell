@@ -38,5 +38,6 @@ char **get_paths_dir(char **env);
 char *get_file_path(char *command, char **paths);
 
 int exit_code(char **commands, int word_count);
+void free_array(char **array);
 
 #endif
