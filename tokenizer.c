@@ -3,6 +3,9 @@
 char **WordParser(char *input, int *word_count, char *seperator)
 {
         char **words = malloc(MAX_WORDS * sizeof(char *));
+	char buffer[1000];
+	char *token;
+	int count = 0;
 
         if (words == NULL)
         {
@@ -10,12 +13,9 @@ char **WordParser(char *input, int *word_count, char *seperator)
                 exit(-1);
         }
 	
-        char buffer[strlen(input) + 1];
         strcpy(buffer, input);
 
-        char *token = strtok(buffer, seperator);
-        int count = 0;
-
+        token = strtok(buffer, seperator);
         while (token != NULL)
         {
                 words[count] = malloc((strlen(token) + 1) * sizeof(char));
