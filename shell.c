@@ -2,31 +2,28 @@
 
 int main(void)
 {
-	char *command = NULL;
-	size_t size = 0;
+	char *command = NULL, *path, **words, **paths;
+	size_t size = 0, read;
 	extern char** environ;
-	int num_shell_calls = 0;
+	int num_shell_calls = 0, word_counts = 0;
 
 	while (1)
 	{
 		prompt();
-		ssize_t read = getline(&command, &size, stdin);
+		read = getline(&command, &size, stdin);
 		num_shell_calls++;
 
 		if (read == -1)
 		{
-			perror("EOF");
+			_putchar('\n', 1);
 			break;
 		}
-		int word_counts = 0;
-		char **words = WordParser(command, &word_counts, " \n\t\r");
-		int i;
-		char **paths = get_paths_dir(environ);
+		words = WordParser(command, &word_counts, " \n\t\r");
+		paths = get_paths_dir(environ);
 
 		if (word_counts == 0)
 			continue;
-
-		char *path = get_file_path(words[0], paths);
+		path = get_file_path(words[0], paths);
 
 		if (strcmp(words[0], "exit") == 0)
 		{
@@ -64,13 +61,8 @@ int main(void)
 			}
 		}
 
-		for (i = 0; i < word_counts; i++)
-		{
-			free(words[i]);
-		}
+		free_array(words);
 
-		free(words);
-		continue;
 	}
 	return (0);
 }
