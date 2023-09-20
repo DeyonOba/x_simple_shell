@@ -3,6 +3,8 @@
 int _putchar(char c, int file_descriptor)
 {
 		write(file_descriptor, &c, 1);
+
+		return (0);
 }
 
 void _print(char *string, int file_descriptor)
