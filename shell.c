@@ -19,10 +19,10 @@ int main(void)
 			break;
 		}
 		words = WordParser(command, &word_counts, " \n\t\r");
-		paths = get_paths_dir(environ);
-
 		if (word_counts == 0)
 			continue;
+
+		paths = get_paths_dir(environ);
 		path = get_file_path(words[0], paths);
 
 		if (strcmp(words[0], "exit") == 0)
