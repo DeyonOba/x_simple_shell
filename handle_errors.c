@@ -50,10 +50,17 @@ char *command_error(int sh_call_num, char *command)
 
 char *default_error(int sh_call_num, char *command)
 {
+	(void)sh_call_num;
+	(void)command;
+
+	return ("");
 }
 
 char *file_error(int sh_call_num, char *command)
 {
-}
+	(void)sh_call_num;
+	(void)command;
 
+	return ("");
+}
 
