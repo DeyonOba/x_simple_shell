@@ -40,13 +40,14 @@ char *command_error(char *file_name, int sh_call_num, char *command)
 {
 	char  *sep = ": ", *message = "not found";
 	char *sh_call = number_to_string(sh_call_num);
-	size_t string_len;
+	size_t string_len = 0;
+	char *error_string;
 
 	string_len += strlen(file_name) + strlen(sep) + strlen(sh_call);
 	string_len += strlen(sep) +  strlen(command) + strlen(sep);
 	string_len += strlen(message) + 2;
 
-	char *error_string = malloc(string_len * sizeof(char));
+	error_string = malloc(string_len * sizeof(char));
 
 	strcpy(error_string, file_name);
 	strcat(error_string, sep);

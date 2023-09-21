@@ -15,5 +15,5 @@ int main(int argc, char **argv, char **env)
 	if (isatty(0))
 		return (interactive_mode(argv[0], env));
 
-	return (0);
+	return (non_interactive_mode(argv[0], env));
 }
