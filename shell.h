@@ -50,6 +50,7 @@ void free_array(char **array);
 
 int interactive_mode(char *filename, char **env);
 int non_interactive(void);
+int non_interactive_mode(char *file_name, char **env);
 int shell_cpu(char *file_name, char **env, int *num_hsh_calls);
 
 
